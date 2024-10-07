@@ -14,25 +14,20 @@
 
 <h2>Configuration Steps</h2>
 
-![image](https://github.com/user-attachments/assets/59b3b430-cb82-4e24-97f2-923ca7bb11c5)
-- <b>Navigate to Microsoft Sentinel and click a CUSTOM: BRUTE FORCE ATTEMPT LINUX SYSLOG incident</b>
-- <b>Set Owner: Ryan Justin De Jesus, Status: Active, Severity: Medium</b>
+![image](https://github.com/user-attachments/assets/bb4d1cf1-7415-492e-a976-ef9c9cf3f77e)
+- <b>Navigate to Microsoft Sentinel and click a CUSTOM: BRUTE FORCE SUCCESS Azure Active Directory incident</b>
+- <b>Set Owner: Ryan Justin De Jesus, Status: Active, Severity: High</b>
 - <b>Click view full details</b>
 
-![image](https://github.com/user-attachments/assets/0280418f-8307-4008-b57c-f562d9ef10b6)
+![image](https://github.com/user-attachments/assets/bdab9b12-a622-4d46-a803-1b9e8ff34c43)
 - <b>Click activity log and observe the activity log</b>
 
-![image](https://github.com/user-attachments/assets/7faf20bd-4b4f-4a95-b7f2-696fd2ca9cd6)
-- <b>Click investigation on the bottom left</b>
-
-![image](https://github.com/user-attachments/assets/7d510b8c-b1cb-4d78-adfc-42e99432f910)
+![image](https://github.com/user-attachments/assets/c44b27d4-8239-4f74-a7c4-0addc001604e)
 - <b>Investigate and determine the scope</b>
-
-![image](https://github.com/user-attachments/assets/568cc113-e50b-4478-be0a-8dcc34ab49b0)
 - <b>Click the IP Address and observe the related event</b>
-- <b>This specific incident is related to 42+ events</b>
+- <b>This specific incident is related to 11+ events</b>
 
-![image](https://github.com/user-attachments/assets/f7613b7a-0de2-4afa-989f-a61df32023ae)
+![image](https://github.com/user-attachments/assets/5d5120ac-978c-4f22-bfcd-fa4645433b23)
 - <b>More Information is presented in the Log Analytics Workspace from this query:</b>
 
 ``` 
@@ -45,7 +40,7 @@ let GetIPRelatedAlerts = (v_IP_Address: string) {
     | where entity['Type'] == 'ip' and entity['Address'] =~ v_IP_Address
     | project-away entity
 };
-GetIPRelatedAlerts(@'183.81.169.238')
+GetIPRelatedAlerts(@'20.28.87.112')
 ```
 
 ![image](https://github.com/user-attachments/assets/734e9966-a58c-48dd-b83e-4ef855bdd29e)
@@ -54,11 +49,11 @@ GetIPRelatedAlerts(@'183.81.169.238')
 ```
 SecurityEvent
 | where EventID == 4625
-| where IpAddress == '183.81.169.238'
+| where IpAddress == '20.28.87.112'
 ```
  
-![image](https://github.com/user-attachments/assets/ebe15060-692a-47c0-be5e-7e9d389ee438)
-- <b>Based on the results, I will conclude this as a True Positive - Suspicious Activity due the results containing multiple failed authentication attempts by the same user account or from the same IP address, further suggesting malicious intent.
+![image](https://github.com/user-attachments/assets/3dbe1a9d-de07-44ee-b194-c952feb69564)
+- <b>Based on the results, I will conclude this as a False Positive - Inaccurate Data since this was from our host computer by the matching IP address. However, if this is a real incident, we have to investigate further and follow the playbook for successful brute force attempts on Azure Active Directory. If this is within the organization, I would call the user and confirm the details with them. If we determine that the user was doing normal duties as a pentester, and collaborated with their manager to conduct this. Then we can close it. False Positive - Inaccurate Data.
 
 ## Incident Management Playbook 
 - <b>Incident Description</b>
