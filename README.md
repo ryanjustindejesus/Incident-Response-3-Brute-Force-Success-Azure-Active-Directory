@@ -43,8 +43,6 @@ let GetIPRelatedAlerts = (v_IP_Address: string) {
 GetIPRelatedAlerts(@'20.28.87.112')
 ```
 
-- <b>Determine the legitimacy of the Incident (True Positive, False Positive, etc.)</b>
-
 ```
 SecurityEvent
 | where EventID == 4625
