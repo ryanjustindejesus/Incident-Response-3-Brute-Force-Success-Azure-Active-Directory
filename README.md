@@ -43,7 +43,6 @@ let GetIPRelatedAlerts = (v_IP_Address: string) {
 GetIPRelatedAlerts(@'20.28.87.112')
 ```
 
-![image](https://github.com/user-attachments/assets/734e9966-a58c-48dd-b83e-4ef855bdd29e)
 - <b>Determine the legitimacy of the Incident (True Positive, False Positive, etc.)</b>
 
 ```
