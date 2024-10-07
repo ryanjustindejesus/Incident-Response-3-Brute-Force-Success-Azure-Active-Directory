@@ -50,6 +50,7 @@ SecurityEvent
 ```
  
 ![image](https://github.com/user-attachments/assets/3dbe1a9d-de07-44ee-b194-c952feb69564)
+- <b>Determine the legitimacy of the incident (True Positive, False Positive,etc)</b>
 - <b>Based on the results, I will conclude this as a False Positive - Inaccurate Data since this was from our host computer by the matching IP address. However, if this is a real incident, we have to investigate further and follow the playbook for successful brute force attempts on Azure Active Directory. If this is within the organization, I would call the user and confirm the details with them. If we determine that the user was doing normal duties as a pentester, and collaborated with their manager to conduct this. Then we can close it. False Positive - Inaccurate Data.
 
 ## Incident Management Playbook 
